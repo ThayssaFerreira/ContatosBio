@@ -5,35 +5,37 @@
 }
 
 :root {
---text-color: white;
---bg-url: url(assets.t/Mobile-Dark.jpg);
---stroke-color: rgba(255,255,255,0.5);
---surface-color: rgba(255,255,255,0.05);
---surface-color-hover:rgba(0,0,0,0.02);
---highlight-color:rgba(255,255,255,0.2);
---switch-bg-url: url(assets.t/moon.svg);
+  --text-color: white;
+  --bg-url: url(assets.t/Mobile-Dark.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(assets.t/moon.svg);
 }
 .light {
-  --text-color:black;
+  --text-color: black;
   --bg-url: url(assets.t/mobile.jpg);
---stroke-color: rgba(0,0,0,0.5);
---surface-color: rgba(0,0,0,0.05);
---surface-color-hover:rgba(0,0,0,0.02);
---highlight-color:rgba(0,0,0,0.1);
---switch-bg-url: url(assets.t/sun.svg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(assets.t/sun.svg);
 }
 body {
-  background-image: var(--bg-url) ;
+  background-image: var(--bg-url);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
+  height: 100%;
 }
 body * {
   font-family: "Playfair", serif;
   color: var(--text-color);
 }
 #container {
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
   margin: 56px auto 0px;
   padding: 24px;
 }
@@ -53,31 +55,34 @@ body * {
   margin-top: 8px;
 }
 /* *switch */
-#switch{
+#switch {
   position: relative;
   width: 64px;
   margin: 4px auto;
-  
 }
-#switch button{
-  width:32px;
+#switch button {
+  width: 32px;
   height: 32px;
   background: white var(--switch-bg-url) no-repeat center;
   border: 0;
   border-radius: 50%;
- position: absolute; 
- top: 50%;
- left: 0;
- z-index: 1;
- transform:translateY(-50%);
- 
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  transform: translateY(-50%);
+  animation: slide-back 0.2s;
+}
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 
 .light #switch button {
   right: 0;
   left: initial;
+  animation: slide-in 0.2s forwards;
 }
-#switch span{
+#switch span {
   display: block;
   width: 64px;
   height: 24px;
@@ -85,7 +90,7 @@ body * {
   border: 1px solid var(--stroke-color);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
- border-radius: 9999px;
+  border-radius: 9999px;
 }
 /* links */
 ul {
@@ -94,7 +99,6 @@ ul {
   flex-direction: column;
   gap: 16px;
   padding: 15px 0;
-
 }
 ul li a {
   display: flex;
@@ -118,22 +122,45 @@ ul li a:hover {
   justify-content: center;
   padding: 24px 24px 24px 24px;
   font-size: 40px;
-
- }
- #social a {
+}
+#social a {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
-  transition:background 0.2s; 
+  transition: background 0.2s;
   border-radius: 50%;
 }
- 
- #social a:hover{
+
+#social a:hover {
   background: var(--highlight-color);
- }
- footer{
+}
+footer {
   padding: 24px 0;
   text-align: center;
   font-size: 14px;
- }
+}
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(assets.t/Fundo-Dark.jpg);
+  }
+  .light {
+    --bg-url: url(assets.t/fundodesk.jpg);
+  }
+}
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
